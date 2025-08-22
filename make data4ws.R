@@ -319,3 +319,30 @@ commerces_osm <- commerces_osm |>
   mutate(idINS = r3035::idINS3035(x=cc[,1], y=cc[,2]))
 commerces_osm |> write_parquet("data4ws/commerces_osm.parquet")
 commerces_osm |> st_transform(3857) |> st_write("data4ws/commerces_osm.geojson")
+
+# Schools ---------------
+
+curl::curl_download("https://www.insee.fr/fr/statistiques/fichier/8217525/BPE24.parquet",
+                    destfile = "/tmp/bpe.parquet")
+
+ecoles <- arrow::read_parquet("/tmp/bpe.parquet") |> 
+  dplyr::filter(DOM=="C") |> 
+  semi_join(amp_c, by=c("DEPCOM"="INSEE_COM")) |> 
+  select(SDOM, TYPEQU, NOMRS, LAMBERT_X, LAMBERT_Y, CAPACITE) |>
+  st_as_sf(coords=c("LAMBERT_X", "LAMBERT_Y"), crs=2154) |> 
+  st_transform(3035) |> 
+  mutate(
+    type = case_when(
+      TYPEQU %in% c("C107", "C108", "C109") ~ "Ecole élémentaire",
+      TYPEQU == "C201" ~ "Collège",
+      TYPEQU %in% c("C301", "C302", "C303") ~ "Lycée",
+      TRUE  ~ "Autres"))
+
+ecoles <- ecoles |> 
+  mutate(idINS = r3035::idINS3035(st_coordinates(ecoles))) 
+
+ecoles |> write_parquet("data4ws/ecoles.parquet")
+ecoles |> st_transform(3857) |> st_write("data4ws/ecoles.geojson", append=FALSE)
+
+# distances ------------
+

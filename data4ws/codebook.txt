@@ -104,14 +104,14 @@ sprincp: surface of the venue (as recorded in the FF)
 cconac: code NAF of the activity (end user), code NAF explantion can be found there : https://doc-datafoncier.cerema.fr/doc/ff/pb0010_local/cconactxt
 type: large categories (4 kind)
 
-# commerces_osm.parquet
+# commerces_osm.parquet/.geojson
 
 ## source: OpenStreetMap calculations by X. Timbeau
 
 ## CRS: 3035/parquet and 3857/geojson
 
 Extraction of some data from OSM. Main shops brands have been selected, leading to 417 shop in the ASM métropole perimeter.
-More data can be extracted by modifying the provided R code (make data4ws.R).
+More data can be extracted by modifying the provided R code (make data4ws.R, section commerces from osm).
 
 idINS: the INSPIRE id
 osm_id: the OSM id (not very useful)
@@ -119,3 +119,18 @@ name: name of the shop
 brand: brand of the shop (usually the same as the name)
 shop: categories of shops (OSM key "shop")
 
+# ecoles.parquet/.geojson
+
+## source: Base Permanente des Equipements (2024) calculations by X. Timbeau
+
+## CRS: 3035/parquet and 3857/geojson
+
+Extraction of some data from BPE. Schools (from maternelle to lycée, excluding professional schools) are all geolocalized, plus a indicator of capacity (number of seats).
+More data can be extracted from BPE by modifying the provided R code (make data4ws.R, section ecoles).
+
+idINS: the INSPIRE id
+SDOM: main catagory
+TYPEQU: category of equipment (detailled)
+NOMRS: name of the equipment (here name of the school), may be used to identify public and private schools
+CAPACITE: number of seats
+type: category of school (matching with population data of c200_amp)
