@@ -1,27 +1,27 @@
-# communes.parquet
+# communes.parquet/.geojson
 
 ## source: IGN/admin express
 
-## CRS: 3035/geoparquet
+## CRS: 3035/geoparquet and 3857/geojson
 
 Includes all 108 communes (and shapes) from Aix Marseille Provence métropole, geography is the one of 2025
 field names are rather clear
 
-# iris.parquet
+# iris.parquet/.geojson
 
 ## source: IGN
 
-## CRS: 3035/geoparquet
+## CRS: 3035/geoparquet and 3857/geojson
 
 Includes all 779 IRIS (and shapes) from Aix Marseille Provence métropole, geography is the one of 2025. 
 field names are rather clear, 
 TYP_IRIS is H for habitat, A for activity, D for "divers"
 
-# c200_amp.parquet
+# c200_amp.parquet/.geojson
 
 ## source: INSEE (données carroyées, Fidéli)
 
-## CRS: 3035/geoparquet
+## CRS: 3035/geoparquet and 3857/geojson
 
 For all 23,872 inhabited square (on an INSPIRE grid, 200m by 200m, in the 3035 proj.), inside AMP métropole, in 2019.
 
@@ -41,11 +41,11 @@ act_mobpro: number of active individuals (working) accroding to MOBPRO in 2019
 tact1564: activity rate (differs from MOBPRO), age between 15 and 64 years old
 tactocc1564: activity rate minus unemployed (active but bot working)
 
-# grille200_amp
+# grille200_amp.parquet/.geojson
 
 ## source: INSEE (données carroyées, Fidéli)
 
-## CRS: 3035/geoparquet
+## CRS: 3035/geoparquet and 3857/geojson
 
 All 80,723 squares of the grid (included non habited ones).
 Fields names are clear enough.
@@ -54,11 +54,9 @@ Fields names are clear enough.
 
 ## source: Fichiers Fonciers, MOBPRO (recensement), calculations by Maxime Parodi et Xavier Timbeau
 
-## CRS: 3035/geoparquet
-
 For all 38,653 squares (INSPIRE grid) on which there are jobs, the number of jobs. (please note that in some squares there are people living and jobs, in some, only people, in some only jobs). Jobs are from MOBPRO, at the level of communes and arrondissements and then imputed to square based on the professional surface ratio (from Fichiers Fonciers).
 
-idINS: the INSPIRE id
+idINS: the INSPIRE id (can be joined to grille_amp to get the geometry of squares, either as a geoparquet (crs 3035) or a geojson (crs 3857))
 dep: the département number
 insee_com: the INSEE code of the commune
 IRIS: the IRIS code
@@ -69,44 +67,39 @@ emp_resident: number of jobs occupied by resident of AMP métropole.
 
 ## source: AMP métropole, calculation by X. Timbeau
 
-## CRS: 3035/geoparquet
-
 data is from AMP métropole open data (https://data.ampmetropole.fr/explore/dataset/bruit-routier-type-a-lden-sur-24h-etude-de-bruit-impedance-ingenierie/information/) and results from a modelisation of road noise. It is then rasterized and projected on a 200m INSPIRE grid. The rasterization implies some approximations.
 
-idINS: the INSPIRE id
+idINS: the INSPIRE id (can be joined to grille_amp to get the geometry of squares, either as a geoparquet (crs 3035) or a geojson (crs 3857))
 isophone: the noise level (dB, the higher, the noisier)
 
 # localclimatezone.parquet
 
 ## source: CEREMA, calculations by X. Timbeau
 
-## CRS: 3035/geoparquet
-
 Categorization of places by CEREMA (https://www.cerema.fr/fr/presse/dossier/zones-climatiques-locales-lcz-outil-libre-service-visualiser) in Local Climate Zone. LCZ from CEREMA are rasterized on a INSPIRE grid (with a crude agregation). Five level are used.
 
-idINS: the INSPIRE id
+idINS: the INSPIRE id (can be joined to grille_amp to get the geometry of squares, either as a geoparquet (crs 3035) or a geojson (crs 3857))
 lcz: local climate zone index (5 very high sensitivity to urban heat island, 4 high, 3 medium, 2 low, 1 none or near (nature))
 
-# point_de_deal.parquet
+# point_de_deal.parquet/.geojson
 
 ## source: Uncertain (https://umap.openstreetmap.fr/en/map/liste-des-quartiers-et-point-de-deal-a-marseille_1125636#6/51.000/2.000)
 
-## CRS: 3035/geoparquet
+## CRS: 3035/parquet and 3857/geojson
 
 Localisation of drug trafficking places. This data in highly doubtful, for fun only
 
 Fields are clear enough.
 
-# commerces_ff.parquet
+# commerces_ff.parquet/.geojson
 
 ## source: Fichiers Fonciers, caclulation by M. Parodi and X. Timbeau
 
-## CRS: 3035/geoparquet
+## CRS: 3035/parquet and 3857/geojson
 
 Data on shops (in a broad sense), from Fichiers Fonciers. This is quite exhaustive as it is collected and used by the tax administation. However, some data may be inacurate and does not fit perfectly with other sources. A shop is a commercial activity in a selection of sectors. 4 main categories have been chosen: food (alim), non food shops (comm), human health (sante, ie doctors, nurses, dentist, kine, pharmacy (no hospital)), leasure (sortie, ie. movie theaters, theaters, bars, disco, restaurants).
 
 idINS: the INSPIRE id
-X, Y: coordinates of the venue (3035)
 sprincp: surface of the venue (as recorded in the FF)
 cconac: code NAF of the activity (end user), code NAF explantion can be found there : https://doc-datafoncier.cerema.fr/doc/ff/pb0010_local/cconactxt
 type: large categories (4 kind)
@@ -115,14 +108,14 @@ type: large categories (4 kind)
 
 ## source: OpenStreetMap calculations by X. Timbeau
 
-## CRS: 3035/geoparquet
+## CRS: 3035/parquet and 3857/geojson
 
 Extraction of some data from OSM. Main shops brands have been selected, leading to 417 shop in the ASM métropole perimeter.
-More data can be extracted by modifying the provided R code.
+More data can be extracted by modifying the provided R code (make data4ws.R).
 
 idINS: the INSPIRE id
 osm_id: the OSM id (not very useful)
 name: name of the shop
 brand: brand of the shop (usually the same as the name)
-shop: categories of shops (OSM key shop)
+shop: categories of shops (OSM key "shop")
 
