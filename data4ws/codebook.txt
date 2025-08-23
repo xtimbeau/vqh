@@ -134,3 +134,49 @@ TYPEQU: category of equipment (detailled)
 NOMRS: name of the equipment (here name of the school), may be used to identify public and private schools
 CAPACITE: number of seats
 type: category of school (matching with population data of c200_amp)
+
+# walk.parquet
+
+## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
+
+Distance and travel time between pairs of idINS walking and following the street network. The shortest path is chosen between each pair, minimizing a Tobler like cost function, i.e. avoiding when possible to climb.
+Time travel less than 1 hour only. Attention the file is quite large (10,110,257 pairs, 230Mb in memory). The relation is symetric as no restrictions apply to walking (path from-to is the same length/time as to-from)
+
+fromidINS: the origin point on the INSPIRE grid
+toidINS: the destination point on the INSPIRE grid
+tt: the travel time from fromidINS to toidINS, in second, as an integer to save place
+d: the travel distance from fromidINS to toidINS, in meter, as an integer to save place
+
+# bike.parquet
+
+## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
+
+Distance and travel time between pairs of idINS biking and following the street network. The shortest path is chosen between each pair, minimizing a Tobler like cost function, i.e. avoiding when possible to climb.
+Time travel less than 1 hour only. Attention the file is quite large (67,560,347 pairs, 1,51Gb in memory). The relation is symetric as no restrictions apply to biking (path from-to is the same length/time as to-from). There are more pairs for biking than for walking as the average speed of a biker (12km/h) is higher than a walker (5km/h) (and the relation is not linear, but quadratic).
+
+fromidINS: the origin point on the INSPIRE grid
+toidINS: the destination point on the INSPIRE grid
+tt: the travel time from fromidINS to toidINS, in second, as an integer to save place
+d: the travel distance from fromidINS to toidINS, in meter, as an integer to save place
+
+# transit.parquet
+
+## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
+
+Distance and travel time between pairs of idINS walking and using the transit system (tram, bus, metro, train, boats, funiculaire or téléphérique). The journey is taken between 8 and 9am on a normal week day and the best travel time is chosen in this 1 hour time window. This matters because of multiple ride journey and matching frequencies and waiting time at each station. Timetable are announced time table and may differ from reality.
+No distance is calculated, only time travel less than 1 hour are kept. Attention the file is quite large (49,481,589 pairs, 950Mb in memory). The relation is symetric as no restrictions apply to biking (path from-to is the same length/time as to-from)
+
+fromidINS: the origin point on the INSPIRE grid
+toidINS: the destination point on the INSPIRE grid
+tt: the travel time from fromidINS to toidINS, in second, as an integer to save place
+
+# car.parquet
+
+## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
+
+Distance and travel time between pairs of idINS walking and using the transit system (tram, bus, metro, train, boats, funiculaire or téléphérique). The journey is taken between 8 and 9am on a normal week day and the best travel time is chosen in this 1 hour time window. This matters because of multiple ride journey and matching frequencies and waiting time at each station. Timetable are announced time table and may differ from reality.
+Only time travel less than 30 minute are kept. Attention the file is quite large (10,153,564 pairs, 237Mb in memory). The relation is symetric as no restrictions apply to biking (path from-to is the same length/time as to-from)
+
+fromidINS: the origin point on the INSPIRE grid
+toidINS: the destination point on the INSPIRE grid
+tt: the travel time from fromidINS to toidINS, in second, as an integer to save place

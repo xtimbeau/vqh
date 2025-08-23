@@ -107,7 +107,7 @@ grille_amp <- grille200 |>
   mutate(idINS = str_replace(idINSPIRE, "CRS3035RES200m", "r200")) |> 
   st_join(iris) |> 
   distinct(idINS, .keep_all = TRUE) |> 
-  select(-ID)
+  select(-ID, -idINSPIRE, id_carr_1k, -IRIS) 
 
 grille_amp |> write_parquet("data4ws/grille200.parquet")
 st_write(grille_amp |> st_transform(3857), dsn = "data4ws/grille200.geojson", append=FALSE)
