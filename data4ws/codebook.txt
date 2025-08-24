@@ -180,3 +180,15 @@ Only time travel less than 30 minute are kept. Attention the file is quite large
 fromidINS: the origin point on the INSPIRE grid
 toidINS: the destination point on the INSPIRE grid
 tt: the travel time from fromidINS to toidINS, in second, as an integer to save place
+
+# distances iris.parquet
+
+## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr). Aggregated by IRIS (instead of idINS)
+
+Distance and travel time between pairs of IRISes for all modes (walk, bike, transit, car). The aggregation is done by using idINS distances and weighing distances in each pairs by population (so an iris where there is only one square will be equivalent to this square). As there is lees data in the end (2,000,310 lines, between. 250k and 600k per mode), there is a larger threshold used. This allows faster and easier calcultations.
+
+fromIRIS: the origin IRIS
+toidINS: the destination IRIS
+tt: the travel time from fromIRIS to toIRIS, in second, as an integer to save place
+d: the distance from fromIRIS to toIRIS, in meter, as an integer to save place
+mode: the mode of transport (walk_tblr, bike_tblr, transit, car_dgr)
