@@ -140,7 +140,7 @@ type: category of school (matching with population data of c200_amp)
 ## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
 
 Distance and travel time between pairs of idINS walking and following the street network. The shortest path is chosen between each pair, minimizing a Tobler like cost function, i.e. avoiding when possible to climb.
-Time travel less than 1 hour only. Attention the file is quite large (10,110,257 pairs, 230Mb in memory). The relation is symetric as no restrictions apply to walking (path from-to is the same length/time as to-from)
+Time travel less than 1 hour only. Attention the file is quite large (10,110,257 pairs, 236Mb in memory). The relation is symetric as no restrictions apply to walking (path from-to is the same length/time as to-from)
 
 fromidINS: the origin point on the INSPIRE grid
 toidINS: the destination point on the INSPIRE grid
@@ -152,7 +152,7 @@ d: the travel distance from fromidINS to toidINS, in meter, as an integer to sav
 ## source: distance calculation by M. Parodi and X. Timbeau, using OSM, GTFS from AMP, and various routing software (R5, dodgr).
 
 Distance and travel time between pairs of idINS biking and following the street network. The shortest path is chosen between each pair, minimizing a Tobler like cost function, i.e. avoiding when possible to climb.
-Time travel less than 1 hour only. Attention the file is quite large (67,560,347 pairs, 1,51Gb in memory). The relation is symetric as no restrictions apply to biking (path from-to is the same length/time as to-from). There are more pairs for biking than for walking as the average speed of a biker (12km/h) is higher than a walker (5km/h) (and the relation is not linear, but quadratic).
+Time travel less than 1 hour only. Attention the file is quite large (20,083,689 pairs, 237Mb in memory). The relation is symetric as no restrictions apply to biking (path from-to is the same length/time as to-from). There are more pairs for biking than for walking as the average speed of a biker (12km/h) is higher than a walker (5km/h) (and the relation is not linear, but quadratic).
 
 fromidINS: the origin point on the INSPIRE grid
 toidINS: the destination point on the INSPIRE grid

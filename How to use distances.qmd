@@ -1,0 +1,108 @@
+---
+format: 
+  html: 
+    embed-resources: true
+---
+
+# How to use distances data to calculate isochrones
+
+## Distances or time 
+
+Distance and time are conceptually close, as they measure the sepration between 2 locations.
+Travel time is a better metric because it allows to compare different modes (walking, transit) in the same unit (seconds), closer to the traveller experience.
+
+##  People
+
+We start with a set of people living somewhere. 
+To not overload our computer we restrict to the 1st arrondissement of Marseille (13201)
+
+```{r people}
+library(arrow)
+library(tidyverse)
+library(sf)
+library(geoarrow)
+
+people <- open_dataset("data4ws/c200_amp.parquet") |> 
+  st_as_sf() |> 
+  filter(INSEE_COM == "13201")
+
+people
+```
+
+We can produce a map of those people, so wde can check we have everything all right (data, selection, coordinates). Thanks to tmap, the map is interactive, which is a great debuugung tool.
+
+```{r map_people}
+library(tmap)
+tmap_mode("view")
+tm_shape(people) + tm_fill(fill = "ind")
+```
+
+## Amenities
+
+We use data from OSM, and search for "intermarchés". We want to know for each 24 squares where people are living what is the distance to those "intermarchés". In OSM we have 38 intermarchés and we check with tmap that this is looking OK.
+
+```{r intermarche}
+
+intermarches <- open_dataset("data4ws/commerces_osm.parquet") |> 
+  st_as_sf() |> 
+  filter(brand == "Intermarché")
+
+tm_shape(intermarches) + tm_dots()
+
+```
+
+## Cross joining amenities and distances
+
+To produce our isochrone we need to cross join people and amenities. So each square -- or each group of person sharing the same location for our resolution -- will be associated to each intermarché. Note that we have an idINS for people (where they live) and for intermarchés (where they are). We have more precise localisation for intermarchés but we are not going to use that, as distances are calculated between pairs idINS. We rename people's idINS as fromidINS and intermarchés' idINS as toidINS to prepare for distances joining.
+
+We remove geometry information as idINS are sufficient for the localization we need.
+
+```{r crossjoin}
+
+pairs <- cross_join(
+  people |> rename(fromidINS = idINS) |> st_drop_geometry(),
+  intermarches |> rename(toidINS = idINS) |> st_drop_geometry())
+
+```
+
+The pairs file is quite large with `r nrow(pairs)` lines, it will be larger when we use more origins and more destinations.
+
+Then we add the distances for biking (because we love biking):
+
+```{r distances}
+
+distances <- open_dataset("data4ws/bike.parquet") |> 
+  collect()
+pairs <- pairs |> 
+  left_join(distances, by=c("fromidINS", "toidINS")) 
+# please note why we renamed the columns: they match in both datasets
+```
+
+We don't have distances for all intermarchés! Some are farther away than the threshold of 30 minutes of travel time we set in distance (to limit the size of the distance dataset). 100 pairs people/intermarchés are in the limit of 30 minutes. 
+
+```{r}
+pairs |> count(is.na(tt))
+
+sum <- pairs |> filter(!is.na(tt)) |> group_by(fromidINS) |> summarize(n =n(), min_time = min(tt)/60) |> arrange(min_time)
+
+# we reconstruct a geometry, using the in-house packge r3035 (devtools::install_github("xtimbeau/r3035"))
+# and we produce our first map of accessibility to intermarché (min_time, number of intermarchés, and so on)
+
+sum |> r3035::idINS2sf(idINS = "fromidINS") |> tm_shape() + tm_fill(fill = "min_time")
+sum |> r3035::idINS2sf(idINS = "fromidINS") |> tm_shape() + tm_fill(fill = "n")
+
+```
+
+It is easy to adapt this code to calculate on a larger set of origins (try with the whole set), a larger set of amenities, and so on. Change the distances dataset (mode) to illustrate the localisation of intermarchés and etc...
+
+## Exercices
+
+1.  adapt the code to the whole Marseille commune, to the whole métropole. Any problems ?
+
+2.  Compare access to intermarché by foot to access to intermarché by car. In order to do that calculate the number of people who have access in less that 15 minutes to each intermarché by car or walking (hint: this is the symetric grouping of the one done there, on toidINS instead of fromidINS). Graph it and conclude some thing on intermarchés' choice of localization.
+
+3.  Use data from commerces_ff to calculate accessibility to important amenities: boulangeries, épiceries, and so on. Look at xtimbeau.github.io/marseille (especially 4 to 6) to get some ideas of data transformation and visualization. We count on you creativity to go further that whta is there.
+
+4. You are ready! In case of a data problem, a bug, a limit coming from your computer (I can set a virtual powerful computer for you if you need), don't wait to ask for support.
+
+

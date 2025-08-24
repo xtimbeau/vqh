@@ -1,0 +1,6 @@
+# How to use distances and travel time
+
+Distances and travel time are used to calculate isochrone.
+The idea is to use a set of origin points, where for instance people live. c200_amp is a good starting point
+
+Starting from a 
