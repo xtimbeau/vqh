@@ -103,6 +103,8 @@ It is easy to adapt this code to calculate on a larger set of origins (try with 
 
 3.  Use data from commerces_ff to calculate accessibility to important amenities: boulangeries, épiceries, and so on. Look at xtimbeau.github.io/marseille (especially 4 to 6) to get some ideas of data transformation and visualization. We count on you creativity to go further that whta is there.
 
-4. You are ready! In case of a data problem, a bug, a limit coming from your computer (I can set a virtual powerful computer for you if you need), don't wait to ask for support.
+3bis. Alternatively, you can search in BPE (base permanente des équipements) to locate swimming pools (or any other equipement). Look at [INSEE website](https://www.insee.fr/fr/metadonnees/source/operation/s2216/presentation).
+
+4. You are ready! In case of a data problem, a bug, a limit of your computer (I can set a virtual powerful computer for you if you need), don't wait to ask for support.
 
 
