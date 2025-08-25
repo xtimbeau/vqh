@@ -106,5 +106,3 @@ It is easy to adapt this code to calculate on a larger set of origins (try with 
 3bis. Alternatively, you can search in BPE (base permanente des équipements) to locate swimming pools (or any other equipement). Look at [INSEE website](https://www.insee.fr/fr/metadonnees/source/operation/s2216/presentation).
 
 4. You are ready! In case of a data problem, a bug, a limit of your computer (I can set a virtual powerful computer for you if you need), don't wait to ask for support.
-
-
