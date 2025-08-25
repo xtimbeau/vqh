@@ -24,7 +24,7 @@ library(geoarrow)
 
 people <- open_dataset("data4ws/c200_amp.parquet") |> 
   st_as_sf() |> 
-  filter(INSEE_COM == "13201")
+  filter(INSEE_COM == "13055")
 
 people
 ```

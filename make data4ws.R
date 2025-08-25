@@ -7,6 +7,7 @@ library(tidyverse)
 library(tmap)
 library(archive)
 library(osmdata)
+library(glue)
 
 # communes ------------
 
@@ -43,7 +44,7 @@ amp <- amp |>
 amp_c <- amp |> distinct(INSEE_COM)
 
 arrow::write_parquet(amp |> select(-ID), "data4ws/communes_amp.parquet")
-st_write(amp |> select(-ID) |> st_transform(3857) , dsn = "data4ws/communes_amp.geojson")
+st_write(amp |> select(-ID) |> st_transform(3857) , dsn = "data4ws/communes_amp.geojson", append=TRUE)
 
 # IRIS ------------
 
@@ -344,5 +345,64 @@ ecoles <- ecoles |>
 ecoles |> write_parquet("data4ws/ecoles.parquet")
 ecoles |> st_transform(3857) |> st_write("data4ws/ecoles.geojson", append=FALSE)
 
-# distances ------------
+# distances ---------------
 
+## data downloaded from Nuvolos
+
+# prices ------------------
+
+dropbox <- "F:/dropbox/Dropbox/dv3f/dv3f2024-2"
+
+db <- open_dataset(glue("{dropbox}/mutation")) |> 
+  to_duckdb()
+
+cols <- c("idnatmut", "datemut", "anneemut",  "moismut", "l_codinsee",   
+          "coddep", "libnatmut", "vefa", "valeurfonc", "sterr", "sbati", "codtypbien", "libtypbien", "filtre",
+          "devenir", "X", "Y")
+COLS <- toupper(cols)
+fil <- c("0", "L")
+dv3f <- db |> dplyr::select(all_of(cols)) 
+dv3f <- dv3f |>
+  mutate(com = str_remove_all(l_codinsee, "\\{|\\}")) |> 
+  filter(com %in% amp_c$INSEE_COM) |> 
+  collect() |> 
+  filter(filtre%in%c("0", "L")) |> 
+  mutate(
+    typebien = case_when(
+      str_detect(codtypbien, "^111") ~ "maison",
+      str_detect(codtypbien, "^121") ~ "appartement",
+      str_detect(codtypbien, "^11") ~ "maisons",
+      str_detect(codtypbien, "^12") ~ "appartements",
+      str_detect(codtypbien, "^13") ~ "dépendances",
+      str_detect(codtypbien, "^14") ~ "activité",
+      str_detect(codtypbien, "^15") ~ "mixte",
+      str_detect(codtypbien, "^2") ~ "terrain", 
+      TRUE ~"autres"),
+    surface = sbati,
+    prixm2 = valeurfonc/surface,
+    idINS = r3035::sidINS3035(X, Y))
+
+dv3f.c200 <- dv3f |> 
+  group_by(idINS, anneemut) |> 
+  filter(typebien %in% c("maison", "appartement")) |> 
+  filter(!is.na(valeurfonc), !is.na(surface)) |> 
+  summarize(vf = sum(valeurfonc), surf = sum(surface), n = n(), prix = vf/surf)
+
+prix <- dv3f.c200 |>
+  left_join(ofce::bd_read("c200ze") |> st_drop_geometry() |> select(idINS, IRIS), by = "idINS") |> 
+  group_by(IRIS, anneemut) |> 
+  summarize(prix = sum(vf)/sum(surf), n = sum(n)) |> 
+  filter(anneemut%in%c(2024, 2023, 2022, 2021, 2020, 2019)) |> 
+  pivot_wider(names_from = anneemut, values_from = c(n,prix)) |> 
+  mutate(tx = (prix_2024/prix_2019)^(1/5)-1) |> 
+  ungroup() |> 
+  mutate(
+    prix = ifelse(is.na(prix_2024),
+                  ifelse(is.na(prix_2023),
+                         ifelse(is.na(prix_2022),
+                                ifelse(is.na(prix_2021),
+                                       prix_2020, prix_2021), prix_2022),
+                         prix_2023), prix_2024))
+
+
+write_parquet(prix, "data4ws/prix_immo.parquet")
