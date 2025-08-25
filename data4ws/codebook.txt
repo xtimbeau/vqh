@@ -192,3 +192,15 @@ toidINS: the destination IRIS
 tt: the travel time from fromIRIS to toIRIS, in second, as an integer to save place
 d: the distance from fromIRIS to toIRIS, in meter, as an integer to save place
 mode: the mode of transport (walk_tblr, bike_tblr, transit, car_dgr)
+
+# prix_immo.parquet
+
+source: DV3F (données de valeur foncière), aggregated at the level of IRIS, years 2019 to 2024
+
+Transaction price for used and new buildings in AMP. Prices are per square meter, in euros. Only simple transactions (i.e. to end user only) are kept. For each year and each IRIS a mean price is calculated.
+
+IRIS: code of the IRIS
+n_20xx: number of transactions in the IRIS for the year 20xx
+prix_20xx: average price per square meter for the year 20xx in the IRIS
+tx: rate of growth from 2019 to 2024
+prix: latest known price (usually 2024, could be older in case of a small number of transactions)
