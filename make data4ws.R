@@ -406,3 +406,17 @@ prix <- dv3f.c200 |>
 
 
 write_parquet(prix, "data4ws/prix_immo.parquet")
+
+# foursquare data ----------------
+
+# a dataset downloaded on four square, alternative to OSM or Fichier Foncier
+
+four2 <- read_parquet("data/bouches_du_rhone_places.parquet") |> 
+  st_as_sf(coords = c("longitude", "latitude"), remove=FALSE, crs=4326) |> 
+  st_transform(3035)
+
+cc <- st_coordinates(four2) |> r3035::coord2idINS()
+
+four2 <- four2 |> mutate(idINS = cc)
+
+four2 |> write_parquet("data4ws/four2.parquet")

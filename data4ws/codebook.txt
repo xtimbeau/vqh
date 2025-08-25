@@ -204,3 +204,11 @@ n_20xx: number of transactions in the IRIS for the year 20xx
 prix_20xx: average price per square meter for the year 20xx in the IRIS
 tx: rate of growth from 2019 to 2024
 prix: latest known price (usually 2024, could be older in case of a small number of transactions)
+
+
+# four2.parquet
+
+## source: foursquare
+
+Various amenities over a period of time. Based on open source data.
+
