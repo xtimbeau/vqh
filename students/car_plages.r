@@ -13,13 +13,12 @@ tm_shape(people)+tm_fill(fill="ind")+tm_shape(plages %>% st_buffer(200))+tm_fill
 tm_shape(plages %>% st_buffer(200))+tm_fill()
 plages <- plages %>% st_transform(3035) %>%  st_join(people %>% select(idINS), join = st_nearest_feature)
 
+distances <- open_dataset("data4ws/car_marseille.parquet") |> 
+  collect()
+
 pairs <- cross_join(
   people |> rename(fromidINS = idINS) |> st_drop_geometry(),
-  plages |> rename(toidINS = idINS) |> st_drop_geometry())
-
-distances <- open_dataset("data4ws/car.parquet") |> 
-  collect()
-pairs <- pairs |> 
+  plages |> rename(toidINS = idINS) |> st_drop_geometry()) |> 
   left_join(distances, by=c("fromidINS", "toidINS")) 
 
 spairs <- pairs %>% drop_na(tt) %>% group_by(fromidINS) %>% summarize(tt = min(tt, na.rm=TRUE)) %>% r3035::idINS2sf(idINS = "fromidINS")
