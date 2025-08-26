@@ -1,0 +1,437 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37640406188655,43.2610858008471 ]
+    },
+    "properties": {
+    "Nom du site":"Base nautique de l'Huveaune",
+    "Categorie":"Bases nautiques",
+    "Baignade surveillee":"non concerne",
+    "Adresse":"109 avenue Pierre Mendes France",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":"04 91 76 54 42"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.29325460644975,43.3587191273511 ]
+    },
+    "properties": {
+    "Nom du site":"Base Nautique Corbieres",
+    "Categorie":"Bases nautiques",
+    "Baignade surveillee":"non concerne",
+    "Adresse":"250 plage de l'Estaque",
+    "Code Postal":13016,
+    "Ville":"Marseille",
+    "Numero de telephone":"04 91 46 19 37"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.3713340457629,43.2668726969215 ]
+    },
+    "properties": {
+    "Nom du site":"Base Nautique du Roucas Blanc",
+    "Categorie":"Bases nautiques",
+    "Baignade surveillee":"non concerne",
+    "Adresse":"2 promenade Georges Pompidou",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":"04 91 29 30 40"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37091765115815,43.244461927014 ]
+    },
+    "properties": {
+    "Nom du site":"Base Nautique de Pointe Rouge",
+    "Categorie":"Bases nautiques",
+    "Baignade surveillee":"non concerne",
+    "Adresse":"Port de la pointe Rouge",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":"04 91 73 74 23"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37506000015355,43.2559786244047 ]
+    },
+    "properties": {
+    "Nom du site":"Plage Borely",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.3722528605062,43.2616478494178 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de David",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37088536989978,43.2633690603804 ]
+    },
+    "properties": {
+    "Nom du site":"Plage du Grand Roucas",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37559698232504,43.2585582353874 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de l'Huveaune",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37476324131846,43.2535186338597 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de Bonneveine",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37373474981852,43.2499885007352 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de la Vieille Chapelle",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.37091765115815,43.244461927014 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de la Pointe Rouge",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.36262807618958,43.2410821250684 ]
+    },
+    "properties": {
+    "Nom du site":"Bain des Dames",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.36228729104585,43.2396951635594 ]
+    },
+    "properties": {
+    "Nom du site":"Anse des Phoceens",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.36087282068946,43.2375354060044 ]
+    },
+    "properties": {
+    "Nom du site":"Anse des Sablettes (plage du Colombet)",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.35996099433288,43.2365510884034 ]
+    },
+    "properties": {
+    "Nom du site":"Bonne Brise (Verrerie)",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.3429912424213,43.214730877663 ]
+    },
+    "properties": {
+    "Nom du site":"Les Goudes",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"La Marronaise",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.42019475514794,43.2101648803907 ]
+    },
+    "properties": {
+    "Nom du site":"Sormiou",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13009,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.44377162739181,43.2122095870382 ]
+    },
+    "properties": {
+    "Nom du site":"Morgiou",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13009,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.498215756739,43.2018744996565 ]
+    },
+    "properties": {
+    "Nom du site":"En Vau",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13009,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.51065996594841,43.2038931719818 ]
+    },
+    "properties": {
+    "Nom du site":"Port Pin",
+    "Categorie":"Plages",
+    "Baignade surveillee":"non",
+    "Adresse":"",
+    "Code Postal":13009,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.36230286692741,43.2730845794453 ]
+    },
+    "properties": {
+    "Nom du site":"Plage du Prophete",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13007,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.35514193946609,43.2905435468172 ]
+    },
+    "properties": {
+    "Nom du site":"Plage Les Catalans",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13007,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.29295423151654,43.3583847326194 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de Corbiere La Lave",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13016,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.29122633001818,43.3576373840842 ]
+    },
+    "properties": {
+    "Nom du site":"Plage de Corbiere Fortin",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13016,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.36861869776039,43.2638804658938 ]
+    },
+    "properties": {
+    "Nom du site":"Plage du Petit Roucas",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13008,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.2918328103947,43.3584231224208 ]
+    },
+    "properties": {
+    "Nom du site":"Corbiere Batterie",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13016,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 5.31579124969699,43.2842320192919 ]
+    },
+    "properties": {
+    "Nom du site":"Frioul Saint Esteve",
+    "Categorie":"Plages",
+    "Baignade surveillee":"oui",
+    "Adresse":"",
+    "Code Postal":13007,
+    "Ville":"Marseille",
+    "Numero de telephone":""
+    }
+  }
+]
+}

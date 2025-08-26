@@ -67,24 +67,25 @@ c200ze <- ofce::bd_read("c200ze") |>
   st_drop_geometry() |> 
   select(-com22,-dep) |>
   mutate(idINS = r3035::expand_idINS(idINS))
-
+# https://www.insee.fr/fr/statistiques/fichier/6215138/Filosofi2017_carreaux_200m_csv.zip
+# https://www.insee.fr/fr/statistiques/fichier/7655475/Filosofi2019_carreaux_200m_csv.zip
 curl::curl_download("https://www.insee.fr/fr/statistiques/fichier/7655475/Filosofi2019_carreaux_200m_csv.zip",
-                    destfile = "/tmp/c200_2019.csv.zip")
-aa <- unzip("/tmp/c200_2019.csv.zip", exdir = "/tmp/")
+                    destfile = "/tmp/c200.csv.zip")
+aa <- unzip("/tmp/c200.csv.zip", exdir = "/tmp/")
 archive_extract(aa, dir = "/tmp/")
 c200 <- vroom::vroom("/tmp/carreaux_200m_met.csv")
-#r3035::idINS2square(c200$idcar_200m)
 
 c200_amp <- c200 |>
-  semi_join(amp_c, by=c("lcog_geo"="INSEE_COM")) |> 
+  mutate(INSEE_COM = str_sub(lcog_geo, 1, 5)) |> 
+  semi_join(amp_c, by=c("INSEE_COM")) |> 
   r3035::idINS2sf(idINS = "idcar_200m") |> 
   transmute(idINS = str_replace(idcar_200m, "CRS3035RES200m", "r200"), 
-            INSEE_COM = lcog_geo) |> 
+            INSEE_COM) |> 
   left_join(c200ze |> select(-emp, -emp_resident, -ze, -scot, -fuite_mobpro, -com, -amenite), by = "idINS") |> 
   mutate(ind_snv  = ind_snv/ind)
 
 c200_amp |> arrow::write_parquet("data4ws/c200_amp.parquet")
-st_write(c200_amp |> st_transform(3857) , dsn = "data4ws/c200_amp.geojson")
+st_write(c200_amp |> st_transform(3857) , dsn = "data4ws/c200_amp.geojson", append=FALSE)
 
 # grille 200 -----------------
 
